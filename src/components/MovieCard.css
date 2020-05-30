@@ -1,0 +1,9 @@
+.card {
+    width: 10rem;
+    min-width: 10rem;
+    margin-right:3.3rem ;
+}
+
+.fa-star{
+    color: rgb(221, 221, 0);
+}

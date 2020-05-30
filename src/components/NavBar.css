@@ -1,0 +1,7 @@
+@media(min-width:992px){
+   
+
+    .form-control{
+        width: 500px !important;
+    }
+} 
