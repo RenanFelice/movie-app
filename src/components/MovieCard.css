@@ -2,8 +2,68 @@
     width: 10rem;
     min-width: 10rem;
     margin-right:3.3rem ;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    
+}
+
+.card-body{
+    padding: 0 ;
+    display: flex;
+    flex-direction: column;
+    height: 10rem;
+    overflow: hidden;
+    word-wrap: break-word;
+    
+}
+
+.card-img-top{
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-img-top:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transform: scale(1.1);
 }
 
 .fa-star{
     color: rgb(221, 221, 0);
+}
+
+.score-container{
+    color: white;
+    font-weight: 700;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 10px;
+    top: 210px;
+    margin:0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+}
+
+.percentage{
+    font-size: 0.5rem;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+}
+
+.card-title{
+    font-weight: bold;
+    margin-top: 1.6rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;   
+}
+
+.card-release-date{
+    color: grey;
 }

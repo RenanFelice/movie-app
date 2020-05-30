@@ -15,24 +15,26 @@ align-items: center;
 .Home-news{
     margin: 3rem 0;
     width: 800px;
+    height: 400px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .carousel-item img{
-    /* width: auto !important; */
     height: 400px !important;
     margin: auto !important;
 }
 
 .carousel-caption h5{
     font-size: 2rem !important;
-    background-color: rgba(0, 0, 0, 0.698);
 }
 
 
 .Home-movies{
     display: flex;
-    width: 800px;
+    width: 1200px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     justify-content: space-between;
     overflow: auto;
     

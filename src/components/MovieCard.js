@@ -1,13 +1,32 @@
 import React from 'react';
 import './MovieCard.css'
 
-const MovieCard = () => {
+const MovieCard = ({movieData}) => {
+    const score = movieData.vote_average*10
+    let colorScore;
+    if(score < 50){
+        colorScore = 'rgb(163, 1, 1)'
+    } else if(score >= 50 && score < 70){
+        colorScore = 'rgb(191, 224, 0)'
+    } else {
+        colorScore = 'rgb(44, 180, 85)'
+    }
+    const monthName = [null, "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    const day = movieData.release_date.slice(8)
+    const month = movieData.release_date.slice(5,7)
+    const year = movieData.release_date.slice(0,4)
     return (
         <div className="card" >
-            <img src="http://www.movieposters101.com/gallery/Hollywood/2013/The_Wolverine/2013/7/13/The_Wolverine_2013_Movie_Poster_5_llhzo_movieposters101(com).jpg" className="card-img-top" alt="..." />
+            <img src={`http://image.tmdb.org/t/p/w185${movieData.poster_path}`} className="card-img-top" alt={movieData.title} />
             <div className="card-body">
-                <p><i className="fas fa-star"></i> <span>7.5</span></p>
-                <p className="card-text">Wolverine</p>
+                <p style={{backgroundColor:colorScore}} className='score-container'>
+                    <span className='score-points'>{score}</span>
+                    <span className='percentage'>%</span>
+                </p>
+                
+                <p className='card-title'>{movieData.title}</p>
+                <p className='card-release-date'>{`${day} de ${monthName[parseInt(month)]}, ${year}`}</p>
+                
             </div>
         </div>
     );
