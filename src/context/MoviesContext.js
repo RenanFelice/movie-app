@@ -15,7 +15,7 @@ const MovieContextProvider = (props) => {
             let month = date.slice(4, 7)
             let year = date.slice(11, 15)
 
-            const url = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
+            const url = 'https://newsapi.org/v2/everything?' +
                 'q=series%20movies&' +
                 `from=${year}-${month}-${day - 1}&` +
                 'sortBy=popularity&' +
