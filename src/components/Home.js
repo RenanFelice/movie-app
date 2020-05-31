@@ -5,7 +5,6 @@ import { MoviesContext } from '../context/MoviesContext'
 
 const Home = () => {
     const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies } = useContext(MoviesContext);
-    console.log(trendingMovies)
 
     return (
         <div className='Home'>
@@ -26,7 +25,7 @@ const Home = () => {
                             <div className="carousel-item active">
                                 <img src={movieNews[0].urlToImage} className="d-block w-100" alt={movieNews[0].description} />
                                 <a target="_blank" rel="noopener noreferrer" href={movieNews[0].url}>
-                                    <div className="carousel-caption d-none d-md-block">
+                                    <div className="carousel-caption">
                                         <h5>{movieNews[0].title}</h5>
                                     </div>
                                 </a>
@@ -35,7 +34,7 @@ const Home = () => {
                             <div className="carousel-item">
                                 <img src={movieNews[1].urlToImage} className="d-block w-100" alt={movieNews[1].description} />
                                 <a target="_blank" rel="noopener noreferrer" href={movieNews[1].url}>
-                                    <div className="carousel-caption d-none d-md-block">
+                                    <div className="carousel-caption">
                                         <h5>{movieNews[1].title}</h5>
                                     </div>
                                 </a>
@@ -44,7 +43,7 @@ const Home = () => {
                             <div className="carousel-item">
                                 <img src={movieNews[2].urlToImage} className="d-block w-100" alt={movieNews[2].description} />
                                 <a target="_blank" rel="noopener noreferrer" href={movieNews[2].url}>
-                                    <div className="carousel-caption d-none d-md-block">
+                                    <div className="carousel-caption">
                                         <h5>{movieNews[2].title}</h5>
                                     </div>
                                 </a>
@@ -66,11 +65,14 @@ const Home = () => {
                 }
             </div>
             <h1 className='trending'>Trending Movies</h1>
-            <div className='Home-movies'>
-                {trendingMoviesisFetching ||
-                    trendingMovies.results.map(movieData => <MovieCard key={movieData.id} movieData={movieData} />)
-                }
-            </div>
+            
+                <div className='Home-movies'>
+                    {trendingMoviesisFetching ||
+                        trendingMovies.results.map((movieData, idx) => <MovieCard key={movieData.id} movieData={movieData} />)
+                    }
+                    <div className='pseudo-element'/>
+                </div>
+        
         </div >);
 }
 
