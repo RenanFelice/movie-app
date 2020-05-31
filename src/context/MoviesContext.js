@@ -17,7 +17,6 @@ const MovieContextProvider = (props) => {
 
             const url = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
                 'q=series%20movies&' +
-                `from=${year}-${month}-${day - 1}&` +
                 'sortBy=popularity&' +
                 'apiKey=918b1bc0a5714706a4f8ba48451af8a3';
 
