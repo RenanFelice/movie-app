@@ -15,12 +15,13 @@ align-items: center;
 .Home-news{
     margin: 3rem 0;
     width: 800px;
-    height: 400px;
+    height: 450px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .carousel-item img{
-    height: 400px !important;
+    height: 450px !important;
+    width: auto;
     margin: auto !important;
 }
 
