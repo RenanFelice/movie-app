@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './NavBar.css'
-const NavBar = () => {
+import { withRouter } from 'react-router-dom'
+
+const NavBar = (props) => {
+    const [movieInput, setMovieInput] = useState('')
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
@@ -13,8 +16,14 @@ const NavBar = () => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 
 
-                <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search Movie..." aria-label="Search" />
+                <form onSubmit={ e => {
+                    e.preventDefault()
+                    props.history.push(`/${movieInput}`)
+                    
+                }} className="form-inline my-2 my-lg-0">
+                    <input value={movieInput} onChange={e => {
+                        setMovieInput(e.target.value)
+                    }} className="form-control mr-sm-2" type="search" placeholder="Search Movie..." aria-label="Search" />
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">GO!</button>
                 </form>
 
@@ -28,4 +37,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar;
+export default withRouter(NavBar);
