@@ -85,12 +85,12 @@ align-items: center;
 @media(max-width:450px){
     .Home-news{
 
-        width: 100%;
-        height: auto !important;
+        width: 360px !important;
+        height: 202.50px !important;
     }
 
     .carousel-item img{
-        width: 100%;
-        height: auto !important;
+        width: 360px !important;
+        height: 202.50px !important;
     }
 }
