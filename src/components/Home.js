@@ -5,50 +5,49 @@ import { MoviesContext } from '../context/MoviesContext'
 
 const Home = () => {
     const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies } = useContext(MoviesContext);
+    let movieNewsSection;
+    console.log(movieNews)
+    if (!movieNews.status) {
+        movieNewsSection = <img alt='notFound' src={require('../notfound.jpg')} className='fetchFailed' />
+    } else {
 
-    return (
-        <div className='Home'>
-            <div className='Home-news'>
-                {movieIsFetching ||
-                    <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
-
+        movieNewsSection =
+                <div className='Home-news'>
+                    <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel" data-interval="3000">
                         <ol className="carousel-indicators">
                             <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
                             <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                             <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
                         </ol>
 
-
-
                         <div className="carousel-inner">
 
-                            <div className="carousel-item active">
-                                <img src={movieNews[0].urlToImage} className="d-block w-100" alt={movieNews[0].description} />
-                                <a target="_blank" rel="noopener noreferrer" href={movieNews[0].url}>
+                            <div  className="carousel-item active">
+                                <img src={movieNews.articles[0].urlToImage} className="d-block w-100" alt={movieNews.articles[0].description} />
+                                <a target="_blank" rel="noopener noreferrer" href={movieNews.articles[0].url}>
                                     <div className="carousel-caption">
-                                        <h5>{movieNews[0].title}</h5>
+                                        <h5>{movieNews.articles[0].title}</h5>
                                     </div>
                                 </a>
                             </div>
 
-                            <div className="carousel-item">
-                                <img src={movieNews[1].urlToImage} className="d-block w-100" alt={movieNews[1].description} />
-                                <a target="_blank" rel="noopener noreferrer" href={movieNews[1].url}>
+                            <div  className="carousel-item">
+                                <img src={movieNews.articles[1].urlToImage} className="d-block w-100" alt={movieNews.articles[1].description} />
+                                <a target="_blank" rel="noopener noreferrer" href={movieNews.articles[1].url}>
                                     <div className="carousel-caption">
-                                        <h5>{movieNews[1].title}</h5>
+                                        <h5>{movieNews.articles[1].title}</h5>
                                     </div>
                                 </a>
                             </div>
 
-                            <div className="carousel-item">
-                                <img src={movieNews[2].urlToImage} className="d-block w-100" alt={movieNews[2].description} />
-                                <a target="_blank" rel="noopener noreferrer" href={movieNews[2].url}>
+                            <div  className="carousel-item">
+                                <img src={movieNews.articles[2].urlToImage} className="d-block w-100" alt={movieNews.articles[2].description} />
+                                <a target="_blank" rel="noopener noreferrer" href={movieNews.articles[2].url}>
                                     <div className="carousel-caption">
-                                        <h5>{movieNews[2].title}</h5>
+                                        <h5>{movieNews.articles[2].title}</h5>
                                     </div>
                                 </a>
                             </div>
-
 
                         </div>
 
@@ -60,20 +59,40 @@ const Home = () => {
                             <span className="carousel-control-next-icon" aria-hidden="true"></span>
                             <span className="sr-only">Next</span>
                         </a>
-
                     </div>
-                }
-            </div>
-            <h1 className='trending'>Trending Movies</h1>
-            
-                <div className='Home-movies'>
-                    {trendingMoviesisFetching ||
-                        trendingMovies.results.map((movieData, idx) => <MovieCard key={movieData.id} movieData={movieData} />)
-                    }
-                    <div className='pseudo-element'/>
                 </div>
-        
-        </div >);
+    }
+
+    return (
+        <div className='Home'>
+            <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel" data-interval="3000">
+            {movieIsFetching ?
+                <div className='Home-news-loading'>
+                        <div className="loading">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                :    
+                movieNewsSection}
+            </div>
+
+
+            <h1 className='trending'>Trending Movies</h1>
+
+            <div className='Home-movies'>
+                {trendingMoviesisFetching ||
+                    trendingMovies.results.map((movieData, idx) => <MovieCard key={movieData.id} movieData={movieData} />)
+                }
+                <div className='pseudo-element' />
+            </div>
+
+        </div >
+
+    );
 }
 
 export default Home;

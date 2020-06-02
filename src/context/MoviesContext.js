@@ -7,6 +7,8 @@ const MovieContextProvider = (props) => {
     const [movieIsFetching, setMovieIsFetching] = useState(true);
     const [trendingMovies, setIsTrendingMovies] = useState([]);
     const [trendingMoviesisFetching, setIsTrendingMoviesIsFetching] = useState(true);
+    const [movieDetails, setMovieDetails] = useState([])
+    const [movieDetailsIsFetching, setMovieDetailsIsFetching] = useState(true)
 
     const fetchMovieNews = async () => {
         try {
@@ -22,11 +24,19 @@ const MovieContextProvider = (props) => {
                 'apiKey=918b1bc0a5714706a4f8ba48451af8a3';
 
             setMovieIsFetching(true)
-            await fetch(url).then(resp => resp.json()).then(data => setMovieNews([data.articles[0], data.articles[1], data.articles[2]]))
+            await fetch(url).then(resp => {
+                if(!resp.ok){
+                    throw Error (resp.status + ' - ' + resp.statusText)
+                } 
+                return resp.json()
+            })
+            .then(data => setMovieNews(data))
             setMovieIsFetching(false)
         }
         catch (e) {
             console.log(e)
+            setMovieIsFetching(false)
+            
         }
     }
 
@@ -38,6 +48,24 @@ const MovieContextProvider = (props) => {
         setIsTrendingMoviesIsFetching(false)
     }
 
+    const fetchMovieDetails = async (searchText) => {
+        try{
+            setMovieDetailsIsFetching(true)
+            const url = `http://www.omdbapi.com/?apikey=5b5e06de&t=${searchText}`
+            await fetch(url).then(resp => {
+                if(!resp.ok){
+                    throw Error (resp.status + ' - ' + resp.statusText)
+                }
+                return resp.json()
+            })
+            .then(data => setMovieDetails(data))
+            setMovieDetailsIsFetching(false)
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+
     useEffect(() => {
         const movieNewsFetcher = async () => await fetchMovieNews()
         movieNewsFetcher()
@@ -47,7 +75,7 @@ const MovieContextProvider = (props) => {
 
 
     return (
-        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching }}>
+        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieDetailsIsFetching,movieDetails, fetchMovieDetails}}>
             {props.children}
         </MoviesContext.Provider>);
 }
