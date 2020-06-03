@@ -3,7 +3,7 @@ import './MovieSearchList.css'
 import { MoviesContext } from '../context/MoviesContext'
 
 const MovieSearchList = () => {
-    const {movieSearchList, movieSearchListIsFetching} = useContext(MoviesContext)
+    const {movieSearchList} = useContext(MoviesContext)
     console.log(movieSearchList)
     let resultPage;
     if(movieSearchList.Response === 'False') {

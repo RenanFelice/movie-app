@@ -2,16 +2,20 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import './NavBar.css'
 import { withRouter, Link } from 'react-router-dom'
 import { MoviesContext } from '../context/MoviesContext'
+import MovieSearchCard from './MovieSearchCard'
 
 
 const NavBar = (props) => {
     const [movieInput, setMovieInput] = useState('')
     const [timeoutId, setTimeoutId] = useState()
-    const { fetchMovieSearchList } = useContext(MoviesContext)
-    const [isTyping, setIsTyping] = useState('')
+    const { fetchMovieSearchList, setMovieSearchListIsFetching } = useContext(MoviesContext)
+    const [dropdownMenu, setdropdownMenu] = useState('')
 
     const handleChangeFetch = e => {
-        if (!movieInput) return
+        if (!movieInput){
+            setdropdownMenu('')
+            return
+        }
         if (timeoutId) {
             clearTimeout(timeoutId)
         }
@@ -24,11 +28,11 @@ const NavBar = (props) => {
     function useOutsideAlerter(ref) {
         useEffect(() => {
           /**
-           * Alert if clicked on outside of element
+           * Do action if clicked on outside of element
            */
           function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
-              setIsTyping('');
+              setdropdownMenu('');
             }
           }
       
@@ -49,18 +53,19 @@ const NavBar = (props) => {
                      <input
                         value={movieInput}
                         onChange={ev => {
+                            setMovieSearchListIsFetching(true)
                             setMovieInput(ev.target.value)
-                            setIsTyping(' show')
+                            setdropdownMenu(' show')
                         }}
                         onKeyUp={handleChangeFetch}
                         className="form-control mr-sm-2" type="search" placeholder="Search Movie..." aria-label="Search" />
-                    <div className="dropdown">
-                        <div className={"dropdown-menu" + isTyping}>
-                            <Link className="dropdown-item" to="/">Action</Link>
-                            <Link className="dropdown-item" to="/">Another action</Link>
                         
-                        </div>
-                    </div>
+                            <div className="dropdown">
+                                <div className={"dropdown-menu" + dropdownMenu}>
+                                    <MovieSearchCard/>
+                                </div>
+                            </div>
+                        
                 </div>;
       }
     
@@ -71,25 +76,21 @@ const NavBar = (props) => {
 
             <Link className="navbar-brand" to='/'><img className="home-img" alt='cinemaicon'
                 src={require('../cinema.png')} /><span className='home-text'>Home</span></Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-
+          
 
                 <form onSubmit={e => {
                     e.preventDefault()
                     fetchMovieSearchList(movieInput)
                     props.history.push(`/searchlist`)
                     setMovieInput('')
-                    setIsTyping('')
+                    setdropdownMenu('')
 
                 }} className="form-inline my-2 my-lg-0">
 
-                   
+                  
                     {OutsideAlerter()}
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">GO!</button>
+                     
                 </form>
 
                 <ul className="navbar-nav mr-auto">
@@ -97,7 +98,7 @@ const NavBar = (props) => {
                         <a className="nav-link about" href="/">About</a>
                     </li>
                 </ul>
-            </div>
+          
 
         </nav>
     );
