@@ -6,20 +6,12 @@ import { MoviesContext } from '../context/MoviesContext'
 const Home = () => {
     const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies } = useContext(MoviesContext);
     let movieNewsSection;
-    console.log(movieNews)
     if (!movieNews.status) {
         movieNewsSection = <img alt='notFound' src={require('../notfound.jpg')} className='fetchFailed' />
     } else {
 
         movieNewsSection =
-                <div className='Home-news'>
-                    <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel" data-interval="3000">
-                        <ol className="carousel-indicators">
-                            <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                        </ol>
-
+                        <>
                         <div className="carousel-inner">
 
                             <div  className="carousel-item active">
@@ -59,27 +51,35 @@ const Home = () => {
                             <span className="carousel-control-next-icon" aria-hidden="true"></span>
                             <span className="sr-only">Next</span>
                         </a>
-                    </div>
-                </div>
+                        </>     
+               
     }
 
     return (
-        <div className='Home'>
-            <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel" data-interval="3000">
-            {movieIsFetching ?
-                <div className='Home-news-loading'>
-                        <div className="loading">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+        
+            <div className='Home'>
+                <div className='Home-news'>
+                <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel" data-interval="3000">
+                            <ol className="carousel-indicators">
+                                <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
+                                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                            </ol>
+                {movieIsFetching ?
+                    <div className='Home-news-loading'>
+                            <div className="loading">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
-                    </div>
-                :    
-                movieNewsSection}
+                    :    
+                    movieNewsSection}
+                </div>
             </div>
-
+            
 
             <h1 className='trending'>Trending Movies</h1>
 

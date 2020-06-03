@@ -17,8 +17,7 @@
 }
 
 .form-inline{
-    margin: auto!important;
-    
+    margin: auto!important;    
 }
 
 .home-img{
@@ -26,6 +25,15 @@
     width:30px ;
     margin-right: 0.5rem ;
     transform: translateY(-3px);
+}
+.dropdown{
+    position: absolute;
+    width: 500px !important;
+}
+
+.dropdown-menu{
+    margin-top: 0.2rem;
+    width: 500px !important;
 }
 
 @media(max-width:575px){

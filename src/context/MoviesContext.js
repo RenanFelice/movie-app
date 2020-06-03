@@ -7,8 +7,8 @@ const MovieContextProvider = (props) => {
     const [movieIsFetching, setMovieIsFetching] = useState(true);
     const [trendingMovies, setIsTrendingMovies] = useState([]);
     const [trendingMoviesisFetching, setIsTrendingMoviesIsFetching] = useState(true);
-    const [movieDetails, setMovieDetails] = useState([])
-    const [movieDetailsIsFetching, setMovieDetailsIsFetching] = useState(true)
+    const [movieSearchList, setMovieSearchList] = useState([])
+    const [movieSearchListIsFetching, setMovieSearchListIsFetching] = useState(true)
 
     const fetchMovieNews = async () => {
         try {
@@ -48,18 +48,18 @@ const MovieContextProvider = (props) => {
         setIsTrendingMoviesIsFetching(false)
     }
 
-    const fetchMovieDetails = async (searchText) => {
+    const fetchMovieSearchList = async (searchText) => {
         try{
-            setMovieDetailsIsFetching(true)
-            const url = `http://www.omdbapi.com/?apikey=5b5e06de&t=${searchText}`
+            setMovieSearchListIsFetching(true)
+            const url = `http://www.omdbapi.com/?apikey=5b5e06de&s=${searchText}`
             await fetch(url).then(resp => {
                 if(!resp.ok){
                     throw Error (resp.status + ' - ' + resp.statusText)
                 }
                 return resp.json()
             })
-            .then(data => setMovieDetails(data))
-            setMovieDetailsIsFetching(false)
+            .then(data => setMovieSearchList(data))
+            setMovieSearchListIsFetching(false)
         }
         catch(e){
             console.log(e)
@@ -73,9 +73,11 @@ const MovieContextProvider = (props) => {
         trendingMoviesFetcher()
     }, [])
 
+    
+
 
     return (
-        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieDetailsIsFetching,movieDetails, fetchMovieDetails}}>
+        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching,movieSearchList, fetchMovieSearchList}}>
             {props.children}
         </MoviesContext.Provider>);
 }

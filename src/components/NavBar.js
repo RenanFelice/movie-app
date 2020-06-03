@@ -1,33 +1,94 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import './NavBar.css'
 import { withRouter, Link } from 'react-router-dom'
 import { MoviesContext } from '../context/MoviesContext'
 
+
 const NavBar = (props) => {
     const [movieInput, setMovieInput] = useState('')
-    const {fetchMovieDetails} = useContext(MoviesContext)
+    const [timeoutId, setTimeoutId] = useState()
+    const { fetchMovieSearchList } = useContext(MoviesContext)
+    const [isTyping, setIsTyping] = useState('')
+
+    const handleChangeFetch = e => {
+        if (!movieInput) return
+        if (timeoutId) {
+            clearTimeout(timeoutId)
+        }
+        let id = setTimeout(e => {
+            fetchMovieSearchList(movieInput)
+        }, 1000)
+        setTimeoutId(id)
+    }
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+          /**
+           * Alert if clicked on outside of element
+           */
+          function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+              setIsTyping('');
+            }
+          }
+      
+          // Bind the event listener
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+          };
+        }, [ref]);
+      }
+
+    function OutsideAlerter(props) {
+        const wrapperRef = useRef(null);
+        useOutsideAlerter(wrapperRef);
+      
+        return <div ref={wrapperRef}>
+                     <input
+                        value={movieInput}
+                        onChange={ev => {
+                            setMovieInput(ev.target.value)
+                            setIsTyping(' show')
+                        }}
+                        onKeyUp={handleChangeFetch}
+                        className="form-control mr-sm-2" type="search" placeholder="Search Movie..." aria-label="Search" />
+                    <div className="dropdown">
+                        <div className={"dropdown-menu" + isTyping}>
+                            <Link className="dropdown-item" to="/">Action</Link>
+                            <Link className="dropdown-item" to="/">Another action</Link>
+                        
+                        </div>
+                    </div>
+                </div>;
+      }
+    
+
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
-            <Link className="navbar-brand"  to='/'><img className="home-img" alt='cinemaicon'
-                        src={require('../cinema.png')} /><span className='home-text'>Home</span></Link>
+            <Link className="navbar-brand" to='/'><img className="home-img" alt='cinemaicon'
+                src={require('../cinema.png')} /><span className='home-text'>Home</span></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                
 
-                <form onSubmit={ e => {
+
+                <form onSubmit={e => {
                     e.preventDefault()
-                    fetchMovieDetails(movieInput)
-                    props.history.push(`/${movieInput}`)
-                    
-                    
+                    fetchMovieSearchList(movieInput)
+                    props.history.push(`/searchlist`)
+                    setMovieInput('')
+                    setIsTyping('')
+
                 }} className="form-inline my-2 my-lg-0">
-                    <input value={movieInput} onChange={e => {
-                        setMovieInput(e.target.value)
-                    }} className="form-control mr-sm-2" type="search" placeholder="Search Movie..." aria-label="Search" />
+
+                   
+                    {OutsideAlerter()}
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">GO!</button>
                 </form>
 
@@ -37,6 +98,7 @@ const NavBar = (props) => {
                     </li>
                 </ul>
             </div>
+
         </nav>
     );
 }
