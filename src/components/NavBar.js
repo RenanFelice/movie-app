@@ -10,6 +10,31 @@ const NavBar = (props) => {
     const [timeoutId, setTimeoutId] = useState()
     const { fetchMovieSearchList, setMovieSearchListIsFetching } = useContext(MoviesContext)
     const [dropdownMenu, setdropdownMenu] = useState('')
+    const [slide, setSlide] = useState(0)
+    const [lastScrollY, setLastScrollY] = useState(0)
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+      
+        return () => {
+          window.removeEventListener('scroll', handleScroll)
+        }
+        //  eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [])
+
+    const handleScroll = e => {
+        let currentScrollY = window.scrollY;
+       
+
+    if (currentScrollY > lastScrollY) {
+      setSlide(-58)
+    } else {
+        setSlide(0)
+    }
+    setLastScrollY(currentScrollY)
+
+    
+    }
 
     const handleChangeFetch = e => {
         if (!movieInput){
@@ -72,7 +97,10 @@ const NavBar = (props) => {
 
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav style={{
+            transform: `translate(0, ${slide}px)`,
+            transition: 'transform 200ms linear',
+          }} className="navbar navbar-expand-lg navbar-dark bg-dark">
 
             <Link className="navbar-brand" to='/'><img className="home-img" alt='cinemaicon'
                 src={require('../cinema.png')} /><span className='home-text'>Home</span></Link>

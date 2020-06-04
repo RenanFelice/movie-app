@@ -1,7 +1,7 @@
 .Home{
 width: 100%;
 height: 100%;
-overflow: auto;
+overflow: hidden;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -14,7 +14,7 @@ align-items: center;
 }
 
 .Home-news{
-    margin: 3rem 0;
+    margin: 6rem 0 3rem 0;
     width: 800px;
     height: 450px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -60,7 +60,8 @@ align-items: center;
     display: flex;
     width: 1200px;
     justify-content: space-between;
-    overflow: auto;
+    overflow-x: scroll;
+    
 }
 
 .Home-movies div:nth-last-child(2){

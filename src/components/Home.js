@@ -78,6 +78,7 @@ const Home = () => {
                     :    
                     movieNewsSection}
                 </div>
+                
             </div>
             
 
@@ -89,7 +90,7 @@ const Home = () => {
                 }
                 <div className='pseudo-element' />
             </div>
-
+            
         </div >
 
     );

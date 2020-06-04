@@ -4,7 +4,6 @@ import './MovieSearchCard.css'
 
 const MovieSearchCard = () => {
     const { movieSearchListIsFetching, movieSearchList } = useContext(MoviesContext)
-    console.log(movieSearchList)
     let resultPage;
     if (movieSearchList.Response === 'False') {
         resultPage = <h1 className='notFound'>Nenhum filme encontrado</h1>

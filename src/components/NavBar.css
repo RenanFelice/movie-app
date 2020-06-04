@@ -1,4 +1,13 @@
+.navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+   
+}
 
+.hidden{
+     top: -58px;
+}
 
 .form-control{
     width:500px !important;
