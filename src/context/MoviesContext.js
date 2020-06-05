@@ -9,6 +9,8 @@ const MovieContextProvider = (props) => {
     const [trendingMoviesisFetching, setIsTrendingMoviesIsFetching] = useState(true);
     const [movieSearchList, setMovieSearchList] = useState([])
     const [movieSearchListIsFetching, setMovieSearchListIsFetching] = useState(true)
+    const [movieSearchListPage, setMovieSearchListPage] = useState([])
+    const [movieSearchListPageIsFetching, setMovieSearchListPageIsFetching] = useState(true)
 
     const fetchMovieNews = async () => {
         try {
@@ -65,6 +67,23 @@ const MovieContextProvider = (props) => {
             console.log(e)
         }
     }
+    const fetchMovieSearchListPage = async (searchText) => {
+        try {
+            setMovieSearchListPageIsFetching(true)
+            const url = `https://www.omdbapi.com/?apikey=5b5e06de&s=${searchText}`
+            await fetch(url).then(resp => {
+                if (!resp.ok) {
+                    throw Error(resp.status + ' - ' + resp.statusText)
+                }
+                return resp.json()
+            })
+                .then(data => setMovieSearchListPage(data))
+            setMovieSearchListPageIsFetching(false)
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
     useEffect(() => {
         const movieNewsFetcher = async () => await fetchMovieNews()
@@ -77,7 +96,7 @@ const MovieContextProvider = (props) => {
 
 
     return (
-        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching, movieSearchList, fetchMovieSearchList, setMovieSearchListIsFetching }}>
+        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching, movieSearchList, fetchMovieSearchList, setMovieSearchListIsFetching, movieSearchListPage, fetchMovieSearchListPage, movieSearchListPageIsFetching }}>
             {props.children}
         </MoviesContext.Provider>);
 }

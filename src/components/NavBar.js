@@ -8,10 +8,10 @@ import MovieSearchCard from './MovieSearchCard'
 const NavBar = (props) => {
     const [movieInput, setMovieInput] = useState('')
     const [timeoutId, setTimeoutId] = useState()
-    const { fetchMovieSearchList, setMovieSearchListIsFetching } = useContext(MoviesContext)
+    const { fetchMovieSearchList, setMovieSearchListIsFetching, fetchMovieSearchListPage } = useContext(MoviesContext)
     const [dropdownMenu, setdropdownMenu] = useState('')
-    const [slide, setSlide] = useState(0)
-    const [lastScrollY, setLastScrollY] = useState(0)
+    // const [slide, setSlide] = useState(0)
+    // const [lastScrollY, setLastScrollY] = useState(0)
 
     //por algum motivo esta renderizando no scroll
     // useEffect(() => {
@@ -99,8 +99,8 @@ const NavBar = (props) => {
 
     return (
         <nav style={{
-            transform: `translate(0, ${slide}px)`,
-            transition: 'transform 200ms linear',
+            // transform: `translate(0, ${slide}px)`,
+            // transition: 'transform 200ms linear',
           }} className="navbar navbar-expand-lg navbar-dark bg-dark">
 
             <Link className="navbar-brand" to='/'><img className="home-img" alt='cinemaicon'
@@ -109,10 +109,11 @@ const NavBar = (props) => {
 
                 <form onSubmit={e => {
                     e.preventDefault()
-                    fetchMovieSearchList(movieInput)
+                    fetchMovieSearchListPage(movieInput)
                     props.history.push(`/${movieInput}`)
                     setMovieInput('')
                     setdropdownMenu('')
+                    
 
                 }} className="form-inline my-2 my-lg-0">
 

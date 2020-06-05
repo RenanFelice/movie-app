@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { MoviesContext } from '../context/MoviesContext'
 import './MovieSearchCard.css'
-import { v4 as uuidv4 } from 'uuid';
 
 const MovieSearchCard = () => {
     const { movieSearchListIsFetching, movieSearchList } = useContext(MoviesContext)
