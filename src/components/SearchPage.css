@@ -1,0 +1,86 @@
+.SearchPage{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.SearchPage-list{
+    margin-top: 8rem;
+    margin-bottom: 4rem;
+    width: 800px;
+    border: 1px solid rgb(165, 165, 165);
+    background-color: white;
+    overflow: auto;
+}
+.Movies-list-FoundMovieCard-title{
+    display: flex;
+    align-items: center;
+    
+}
+.Movies-list-FoundMovieCard-title h3{
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.Movies-list-FoundMovieCard-title p{
+    margin-right: 0.3rem;
+}
+.Movies-list-FoundMovieCard{
+    display: flex;
+}
+
+.Movies-list-img-container img{
+    width: 80px;
+    margin: 1rem;
+
+}
+
+.Movies-list-FoundMovieCard:nth-of-type(odd){
+    background-color: rgb(212, 212, 212);
+}
+.Movies-list-FoundMovieCard:nth-of-type(even){
+    background-color: white;
+}
+
+.Movies-list-FoundMovieCard ~ hr {
+    margin: 0;
+}
+
+@media(max-width:991px){
+    .SearchPage-list{
+        
+        width: 500px;
+    }  
+    .Movies-list-FoundMovieCard-title h3{
+        font-size: 1.2rem;
+    }
+    
+}
+
+
+@media(max-width:575px){
+   
+    .SearchPage-list{
+        
+        width: 300px;
+    }  
+    .Movies-list-FoundMovieCard-title h3{
+        font-size: 1rem;
+        margin: 0;
+    }
+    .Movies-list-img-container img{
+    
+        margin: 0.7rem 0 0.7rem 0.7rem;
+    }
+    .Movies-list-FoundMovieCard-title {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+    }
+
+}

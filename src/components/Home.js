@@ -5,6 +5,7 @@ import { MoviesContext } from '../context/MoviesContext'
 
 const Home = () => {
     const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies } = useContext(MoviesContext);
+    console.log(trendingMovies)
     let movieNewsSection;
     if (!movieNews.status) {
         movieNewsSection = <img alt='notFound' src={require('../notfound.jpg')} className='fetchFailed' />

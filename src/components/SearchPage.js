@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import { MoviesContext } from '../context/MoviesContext'
-import './MovieSearchCard.css'
-import { v4 as uuidv4 } from 'uuid';
+import './SearchPage.css'
 
-const MovieSearchCard = () => {
+const SearchPage = () => {
     const { movieSearchListIsFetching, movieSearchList } = useContext(MoviesContext)
     let resultPage;
-    
     
     if (movieSearchList.Response === 'False') {
         resultPage = <h1 className='notFound'>Nenhum filme encontrado</h1>
@@ -19,17 +17,18 @@ const MovieSearchCard = () => {
                 moviesArrFinal.push(item)
             }
         })
-        resultPage = <div className='SearchList'>
+        resultPage = <div className='Movies-list'>
                         {moviesArrFinal.map(movie => (
                             
                            <React.Fragment key={movie.imdbID}>
-                            <div  className='FoundMovieCard'>
-                                <div className='img-container'>
+                            <div  className='Movies-list-FoundMovieCard'>
+                                <div className='Movies-list-img-container'>
                                     <img src={movie.Poster} alt=''/>
                                 </div>
-                                <div className='FoundMovieCard-title'>
+                                <div className='Movies-list-FoundMovieCard-title'>
                                     <h3>{movie.Title}</h3>
-                                    <p>{movie.Year}</p>
+                                    <p>({movie.Year})</p>
+                                    <p>({movie.Type})</p>
                                 </div>
                             </div>
                             <hr/>
@@ -40,21 +39,12 @@ const MovieSearchCard = () => {
     }
 
 
-    return (
-        <>
-            {movieSearchListIsFetching ?
-                
-                    <div className="spinner">
-                        <div className="bounce1"></div>
-                        <div className="bounce2"></div>
-                        <div className="bounce3"></div>
-                    </div>
-                
-                : resultPage}
-        </>
-    );
+
+    return ( <div className='SearchPage'>
+                <div className='SearchPage-list'>
+                    {resultPage}
+                </div>
+            </div> );
 }
-
-
-
-export default MovieSearchCard;
+ 
+export default SearchPage;

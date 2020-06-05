@@ -13,28 +13,29 @@ const NavBar = (props) => {
     const [slide, setSlide] = useState(0)
     const [lastScrollY, setLastScrollY] = useState(0)
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+    //por algum motivo esta renderizando no scroll
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll);
       
-        return () => {
-          window.removeEventListener('scroll', handleScroll)
-        }
-        //  eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [])
+    //     return () => {
+    //       window.removeEventListener('scroll', handleScroll)
+    //     }
+    //     //  eslint-disable-next-line react-hooks/exhaustive-deps
+    //   }, [])
 
-    const handleScroll = e => {
-        let currentScrollY = window.scrollY;
+    // const handleScroll = e => {
+    //     let currentScrollY = window.scrollY;
        
 
-    if (currentScrollY > lastScrollY) {
-      setSlide(-58)
-    } else {
-        setSlide(0)
-    }
-    setLastScrollY(currentScrollY)
+    // if (currentScrollY > lastScrollY) {
+    //   setSlide(-58)
+    // } else {
+    //     setSlide(0)
+    // }
+    // setLastScrollY(currentScrollY)
 
     
-    }
+    // }
 
     const handleChangeFetch = e => {
         if (!movieInput){
@@ -109,7 +110,7 @@ const NavBar = (props) => {
                 <form onSubmit={e => {
                     e.preventDefault()
                     fetchMovieSearchList(movieInput)
-                    props.history.push(`/searchlist`)
+                    props.history.push(`/${movieInput}`)
                     setMovieInput('')
                     setdropdownMenu('')
 

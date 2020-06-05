@@ -4,7 +4,6 @@ import { MoviesContext } from '../context/MoviesContext'
 
 const MovieSearchList = () => {
     const {movieSearchList} = useContext(MoviesContext)
-    console.log(movieSearchList)
     let resultPage;
     if(movieSearchList.Response === 'False') {
         resultPage = <h1>nada encontrado</h1>

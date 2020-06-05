@@ -51,7 +51,7 @@ const MovieContextProvider = (props) => {
     const fetchMovieSearchList = async (searchText) => {
         try {
             setMovieSearchListIsFetching(true)
-            const url = `http://www.omdbapi.com/?apikey=5b5e06de&s=${searchText}`
+            const url = `https://www.omdbapi.com/?apikey=5b5e06de&s=${searchText}`
             await fetch(url).then(resp => {
                 if (!resp.ok) {
                     throw Error(resp.status + ' - ' + resp.statusText)

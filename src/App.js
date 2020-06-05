@@ -2,8 +2,9 @@ import React from 'react';
 import './App.css';
 import Home from './components/Home'
 import NavBar from './components/NavBar';
-import MovieSearchList from './components/MovieSearchList'
+import SearchPage from './components/SearchPage'
 import MovieContextProvider from './context/MoviesContext'
+import MovieDetails from './components/MovieDetails'
 import {Switch, Route} from "react-router-dom";
 
 
@@ -15,7 +16,8 @@ function App() {
         <div className='Main'>
           <Switch>
             <Route exact path='/' render={ routerProps => <Home {...routerProps}/>}/>
-            <Route exact path='/searchlist' component={MovieSearchList}/>
+            <Route exact path='/:searchpage' component={SearchPage}/>
+            <Route exact path='/:searchpage/:moviedetails' component={MovieDetails}/>
           </Switch>
         </div>
       </MovieContextProvider>
