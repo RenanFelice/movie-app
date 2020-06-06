@@ -30,6 +30,9 @@
 .Movies-list-FoundMovieCard{
     display: flex;
 }
+.Movies-list-FoundMovieCard a{
+    display: flex;
+}
 
 .Movies-list-img-container img{
     width: 80px;

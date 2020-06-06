@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { MoviesContext } from '../context/MoviesContext'
 import './SearchPage.css'
+import { Link } from 'react-router-dom'
 
 const SearchPage = () => {
     const { movieSearchListPageIsFetching, movieSearchListPage, moviePageFetchError } = useContext(MoviesContext)
     let resultPage;
-    
+
 
 
     if (movieSearchListPage.Response === 'False') {
@@ -24,14 +25,17 @@ const SearchPage = () => {
 
                 <React.Fragment key={movie.imdbID}>
                     <div className='Movies-list-FoundMovieCard'>
-                        <div className='Movies-list-img-container'>
-                            <img src={movie.Poster} alt='' />
-                        </div>
-                        <div className='Movies-list-FoundMovieCard-title'>
-                            <h3>{movie.Title}</h3>
-                            <p>({movie.Year})</p>
-                            <p>({movie.Type})</p>
-                        </div>
+                        <Link style={{ color: 'inherit',width:'100%', textDecoration: 'inherit' }}
+                            to={`/moviedetails/${movie.Title}`}>
+                            <div className='Movies-list-img-container'>
+                                <img src={movie.Poster} alt='' />
+                            </div>
+                            <div className='Movies-list-FoundMovieCard-title'>
+                                <h3>{movie.Title}</h3>
+                                <p>({movie.Year})</p>
+                                <p>({movie.Type})</p>
+                            </div>
+                        </Link>
                     </div>
                     <hr />
                 </React.Fragment>
@@ -59,7 +63,7 @@ const SearchPage = () => {
                     </div>
                 </div>}
         </>
-            );
+    );
 }
 
 export default SearchPage;

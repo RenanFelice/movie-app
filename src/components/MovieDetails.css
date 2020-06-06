@@ -44,7 +44,7 @@
 .Subtitle span:nth-child(1){
     border: solid 2px grey;
     border-radius: 5px;
-    padding: 3px;
+    padding: 1px 4px;
     margin-right: 0.6rem;
 }
 .Subtitle span:nth-child(2){
@@ -78,6 +78,7 @@
     color: rgb(209, 209, 209);
 }
 .Overview{
+    display: block;
     font-weight: 700;
     color: white;
     font-size: 1.3em;
@@ -87,6 +88,12 @@
 .Director{
     margin-top: 2rem;
 }
+
+.Director span:nth-child(1){
+    display: block;
+    font-weight: 700;
+}
+
 .Director h5{
     margin: 0;
     font-weight: 700;
@@ -129,12 +136,12 @@
         
     }
     .Plot{
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
-    .Overview{
+    /* .Overview{
 
         font-size: 0.91em;
-    }
+    } */
     .Director p{
         font-size: 0.65rem;
           
@@ -161,7 +168,7 @@
     }
 
     .MovieDetails-Banner{
-      height: 250px;
+      height: 210px;
      }
     .MovieDetails-Banner img{
        margin-right: 1rem;

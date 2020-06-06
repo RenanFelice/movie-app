@@ -28,8 +28,8 @@ const MovieDetails = (props) => {
                             <h1>{movieDetails.Title}<span> ({movieDetails.Year})</span></h1>
                             <p className='Subtitle'><span>{movieDetails.Rated}</span><span>{movieDetails.Genre}</span><span>•</span><span>{movieDetails.Runtime}</span></p>
                             <p className='Scores'><i className="fab fa-imdb"></i><span>{movieDetails.Ratings[0].Value}</span></p>
-                            <h5 className='Plot'><p className='Overview'>Overview</p><i>{movieDetails.Plot}</i></h5>
-                            <p className='Director'><h5>{movieDetails.Director}</h5><p>Director</p></p>
+                            <p className='Plot'><span className='Overview'>Overview</span><i>{movieDetails.Plot}</i></p>
+                            <p className='Director'><span>{movieDetails.Director}</span><span>Director</span></p>
                         </div>
                     </div>
                 </div>
