@@ -1,11 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Home.css'
 import MovieCard from './MovieCard'
 import { MoviesContext } from '../context/MoviesContext'
+import {Link} from "react-router-dom";
 
 const Home = () => {
-    const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies } = useContext(MoviesContext);
+    const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies, fetchMovieNews, fetchTrendingMovies } = useContext(MoviesContext);
     console.log(trendingMovies)
+
+    useEffect(() => {
+        const movieNewsFetcher = async () => await fetchMovieNews()
+        movieNewsFetcher()
+        const trendingMoviesFetcher = async () => await fetchTrendingMovies()
+        trendingMoviesFetcher()
+        //  eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     let movieNewsSection;
     if (!movieNews.status) {
         movieNewsSection = <img alt='notFound' src={require('../notfound.jpg')} className='fetchFailed' />
@@ -87,7 +97,13 @@ const Home = () => {
 
             <div className='Home-movies'>
                 {trendingMoviesisFetching ||
-                    trendingMovies.results.map((movieData, idx) => <MovieCard key={movieData.id} movieData={movieData} />)
+                    trendingMovies.results.map((movieData, idx) => 
+                    <Link 
+                    key={movieData.id}
+                    style={{ color: 'inherit', textDecoration: 'inherit'}} 
+                    to={`/moviedetails/${movieData.title}`}>
+                        <MovieCard  movieData={movieData} />
+                    </Link>)
                 }
                 <div className='pseudo-element' />
             </div>

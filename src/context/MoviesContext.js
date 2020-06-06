@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const MoviesContext = createContext()
 
@@ -11,6 +11,9 @@ const MovieContextProvider = (props) => {
     const [movieSearchListIsFetching, setMovieSearchListIsFetching] = useState(true)
     const [movieSearchListPage, setMovieSearchListPage] = useState([])
     const [movieSearchListPageIsFetching, setMovieSearchListPageIsFetching] = useState(true)
+    const [moviePageFetchError, setMoviePageFetchError] = useState()
+    const [movieDetails, setMovieDetails] = useState([])
+    const [movieDetailsIsFetching, setMovieDetailsIsFething] = useState([])
 
     const fetchMovieNews = async () => {
         try {
@@ -49,6 +52,13 @@ const MovieContextProvider = (props) => {
         await fetch(url).then(resp => resp.json()).then(data => setIsTrendingMovies(data))
         setIsTrendingMoviesIsFetching(false)
     }
+    const fetchMovieDetails = async (movieName) => {
+
+        const url = `https://www.omdbapi.com/?apikey=5b5e06de&t=${movieName}`
+        setMovieDetailsIsFething(true)
+        await fetch(url).then(resp => resp.json()).then(data => setMovieDetails(data))
+        setMovieDetailsIsFething(false)
+    }
 
     const fetchMovieSearchList = async (searchText) => {
         try {
@@ -81,22 +91,17 @@ const MovieContextProvider = (props) => {
             setMovieSearchListPageIsFetching(false)
         }
         catch (e) {
+            setMoviePageFetchError(e)
             console.log(e)
+            setMovieSearchListPageIsFetching(false)
         }
     }
 
-    useEffect(() => {
-        const movieNewsFetcher = async () => await fetchMovieNews()
-        movieNewsFetcher()
-        const trendingMoviesFetcher = async () => await fetchTrendingMovies()
-        trendingMoviesFetcher()
-    }, [])
-
-
+   
 
 
     return (
-        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching, movieSearchList, fetchMovieSearchList, setMovieSearchListIsFetching, movieSearchListPage, fetchMovieSearchListPage, movieSearchListPageIsFetching }}>
+        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching, movieSearchList, fetchMovieSearchList, setMovieSearchListIsFetching, movieSearchListPage, fetchMovieSearchListPage, movieSearchListPageIsFetching, moviePageFetchError, movieDetails, movieDetailsIsFetching, fetchMovieDetails, fetchMovieNews,fetchTrendingMovies }}>
             {props.children}
         </MoviesContext.Provider>);
 }

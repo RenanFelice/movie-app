@@ -3,8 +3,10 @@ import { MoviesContext } from '../context/MoviesContext'
 import './SearchPage.css'
 
 const SearchPage = () => {
-    const { movieSearchListPageIsFetching, movieSearchListPage } = useContext(MoviesContext)
+    const { movieSearchListPageIsFetching, movieSearchListPage, moviePageFetchError } = useContext(MoviesContext)
     let resultPage;
+    
+
 
     if (movieSearchListPage.Response === 'False') {
         resultPage = <h1 className='notFound'>Nenhum filme encontrado</h1>
@@ -12,7 +14,7 @@ const SearchPage = () => {
         let moviesArrFinal = [];
         let moviesId = [];
         movieSearchListPage.Search.forEach(item => {
-            if (!moviesId.includes(item.imdbID)) {
+            if (moviesId.indexOf(item.imdbID) === -1) {
                 moviesId.push(item.imdbID)
                 moviesArrFinal.push(item)
             }
@@ -36,6 +38,8 @@ const SearchPage = () => {
 
             ))}
         </div>
+    } else if (moviePageFetchError) {
+        resultPage = <h1 className='fetchFailed'>Algo deu errado</h1>
     }
 
 

@@ -119,7 +119,7 @@ const NavBar = (props) => {
 
                   
                     {OutsideAlerter()}
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">GO!</button>
+                    <button className="btn btn-success my-2 my-sm-0" type="submit">GO!</button>
                      
                 </form>
 

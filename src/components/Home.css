@@ -49,8 +49,9 @@ align-items: center;
 }
 
 .fetchFailed{
-    width: 800px;
-    height: 450px;
+    width: 800px !important;
+    height: 450px !important;
+    padding: 0 !important;
 }
 
 
@@ -140,8 +141,8 @@ align-items: center;
         width: 100%;
     }
     .fetchFailed{
-        width:450px;
-        height: 253.13px;
+        width:450px !important;
+        height: 253.13px !important;
     }
 
     .Home-news{
@@ -203,8 +204,8 @@ align-items: center;
     }
 
     .fetchFailed{
-        width:360px;
-        height: 202.50px;
+        width:360px !important;
+        height: 202.50px !important;
     }
 
     .carousel-caption h5{

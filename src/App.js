@@ -17,7 +17,7 @@ function App() {
           <Switch>
             <Route exact path='/' render={ routerProps => <Home {...routerProps}/>}/>
             <Route exact path='/:searchpage' component={SearchPage}/>
-            <Route exact path='/:searchpage/:moviedetails' component={MovieDetails}/>
+            <Route exact path='/moviedetails/:moviename' component={MovieDetails}/>
           </Switch>
         </div>
       </MovieContextProvider>

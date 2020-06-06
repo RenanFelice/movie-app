@@ -13,7 +13,7 @@ const MovieSearchCard = () => {
         let moviesArrFinal = [];
         let moviesId = [];
         movieSearchList.Search.forEach(item => {
-            if(!moviesId.includes(item.imdbID)){
+            if(moviesId.indexOf(item.imdbID) === -1){
                 moviesId.push(item.imdbID)
                 moviesArrFinal.push(item)
             }

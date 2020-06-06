@@ -1,5 +1,188 @@
 .MovieDetails{
-    height: 500px;
-    width: 600px;
-    background-color: green;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
+
+.MovieDetails-Banner{
+    display: flex;
+    margin-top: 7rem;
+    width: 100%;
+    background-color: rgb(73, 73, 73);
+    height: 500px;
+}
+.MovieDetails-Banner-Body{
+    display: flex;
+    margin: auto;
+    color: white;
+    padding-left: 2rem;
+    padding-right: 1rem;
+
+}
+.MovieDetails-Banner img{
+   margin-right: 2rem;
+   width: 300px;
+   height: 436px;
+}
+
+.MovieDetails-Banner-Body-Details h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    /* margin-bottom: 0; */
+}
+.MovieDetails-Banner-Body-Details h1 span{
+    font-size: 2rem;
+    font-weight: 400;
+}
+.MovieDetails-Banner-Body-Details {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Subtitle span:nth-child(1){
+    border: solid 2px grey;
+    border-radius: 5px;
+    padding: 3px;
+    margin-right: 0.6rem;
+}
+.Subtitle span:nth-child(2){
+    
+    margin-right: 0.6rem;
+    
+}
+.Subtitle span:nth-child(3){
+    
+    margin-right: 0.6rem;
+    
+}
+
+.Scores{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+}
+.Scores i{
+    font-size: 3rem;
+    color: rgb(200, 200, 0);
+}
+.Scores span{
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    
+}
+.Plot{
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: rgb(209, 209, 209);
+}
+.Overview{
+    font-weight: 700;
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 0.6rem;
+}
+
+.Director{
+    margin-top: 2rem;
+}
+.Director h5{
+    margin: 0;
+    font-weight: 700;
+    
+}
+.Director p{
+    font-size: 0.9rem;
+    
+    
+}
+
+@media(max-width:991px){
+    .MovieDetails-Banner img{
+       
+        width: 210px;
+        height: 305.20px;
+     }
+
+     .MovieDetails-Banner{
+        height: 350px;
+    }
+
+    .MovieDetails-Banner-Body-Details h1 {
+        font-size: 1.4rem;
+
+    }
+    .MovieDetails-Banner-Body-Details h1 span{
+        font-size: 1.4rem;
+
+    }
+    .Subtitle{
+        font-size: 0.8rem;
+    }
+    .Scores i{
+        font-size: 2.1rem;
+
+    }
+    .Scores span{
+        font-size: 1.05rem;
+        
+    }
+    .Plot{
+        font-size: 0.7rem;
+    }
+    .Overview{
+
+        font-size: 0.91em;
+    }
+    .Director p{
+        font-size: 0.65rem;
+          
+    }
+    .Director h5{
+        font-size: 0.85rem;
+          
+    }
+    
+}
+
+
+
+@media(max-width:750px){
+    .Plot{
+        display: none;
+    }
+
+    .MovieDetails-Banner-Body{
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .MovieDetails-Banner{
+      height: 250px;
+     }
+    .MovieDetails-Banner img{
+       margin-right: 1rem;
+        width: 105px;
+        height: 152.6px;
+     }
+     .Director{
+         margin-top: 0.4rem;
+     }
+     .Scores{
+         margin-top: 0.4rem;
+     }
+
+     .MovieDetails-Banner-Body-Details h1 {
+        font-size: 1rem;
+
+    }
+     .MovieDetails-Banner-Body-Details h1 span {
+        font-size: 1rem;
+
+    }
+}
+
+
