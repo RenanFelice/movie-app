@@ -9,5 +9,5 @@ http://www.omdbapi.com/
 
 https://newsapi.org/ (api substituida por fake data no branch 'remove-newsAPI', pois a versão gratuíta não funciona no deploy do heroku)
 
-![Image](.src/psdesktop.jpg)
-![Image](.src/psmobile.jpg)
+![Image](./src/psdesktop.jpg)
+![Image](./src/psmobile.jpg)
