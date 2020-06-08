@@ -5,48 +5,44 @@ import { MoviesContext } from '../context/MoviesContext'
 import {Link} from "react-router-dom";
 
 const Home = () => {
-    const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies, fetchMovieNews, fetchTrendingMovies } = useContext(MoviesContext);
+    const {trendingMoviesisFetching, trendingMovies, fetchTrendingMovies } = useContext(MoviesContext);
 
     useEffect(() => {
-        const movieNewsFetcher = async () => await fetchMovieNews()
-        movieNewsFetcher()
         const trendingMoviesFetcher = async () => await fetchTrendingMovies()
         trendingMoviesFetcher()
         //  eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     let movieNewsSection;
-    if (!movieNews.status) {
-        movieNewsSection = <img alt='notFound' src={require('../notfound.jpg')} className='fetchFailed' />
-    } else {
+   
 
         movieNewsSection =
                         <>
                         <div className="carousel-inner">
 
                             <div  className="carousel-item active">
-                                <img src={movieNews.articles[0].urlToImage} className="d-block w-100" alt={movieNews.articles[0].description} />
-                                <a target="_blank" rel="noopener noreferrer" href={movieNews.articles[0].url}>
+                                <img src={require('../interstellar.jpg')} className="d-block w-100" alt='interstellar review' />
+                                <a target="_blank" rel="noopener noreferrer" href='https://www.nydailynews.com/entertainment/movies/interstellar-movie-review-article-1.1997552'>
                                     <div className="carousel-caption">
-                                        <h5>{movieNews.articles[0].title}</h5>
+                                        <h5>'Interstellar,' movie review</h5>
                                     </div>
                                 </a>
                             </div>
 
                             <div  className="carousel-item">
-                                <img src={movieNews.articles[1].urlToImage} className="d-block w-100" alt={movieNews.articles[1].description} />
-                                <a target="_blank" rel="noopener noreferrer" href={movieNews.articles[1].url}>
+                                <img src={require('../Melancholia.jpg')} className="d-block w-100" alt='Melancholia' />
+                                <a target="_blank" rel="noopener noreferrer" href='https://thefilmstage.com/how-lars-von-trier-caused-melancholia-to-lose-the-palme-dor-to-the-tree-of-life/'>
                                     <div className="carousel-caption">
-                                        <h5>{movieNews.articles[1].title}</h5>
+                                        <h5>How Lars von Trier Caused Melancholia to Lose the Palme d’Or to The Tree of Life</h5>
                                     </div>
                                 </a>
                             </div>
 
                             <div  className="carousel-item">
-                                <img src={movieNews.articles[2].urlToImage} className="d-block w-100" alt={movieNews.articles[2].description} />
-                                <a target="_blank" rel="noopener noreferrer" href={movieNews.articles[2].url}>
+                                <img src={require('../got.jpg')} className="d-block w-100" alt='got' />
+                                <a target="_blank" rel="noopener noreferrer" href='https://www.cinemablend.com/television/2547047/game-of-thrones-ending-6-things-i-still-cant-get-over'>
                                     <div className="carousel-caption">
-                                        <h5>{movieNews.articles[2].title}</h5>
+                                        <h5>Game of Thrones Ending: 6 Things I Still Can't Get Over</h5>
                                     </div>
                                 </a>
                             </div>
@@ -63,7 +59,7 @@ const Home = () => {
                         </a>
                         </>     
                
-    }
+    
 
     return (
         
@@ -75,18 +71,8 @@ const Home = () => {
                                 <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                                 <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
                             </ol>
-                {movieIsFetching ?
-                    <div className='Home-news-loading'>
-                            <div className="loading">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    :    
-                    movieNewsSection}
+                 
+                    {movieNewsSection}
                 </div>
                 
             </div>
