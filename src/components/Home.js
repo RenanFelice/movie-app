@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 
 const Home = () => {
     const { movieNews, movieIsFetching, trendingMoviesisFetching, trendingMovies, fetchMovieNews, fetchTrendingMovies } = useContext(MoviesContext);
-    console.log(trendingMovies)
 
     useEffect(() => {
         const movieNewsFetcher = async () => await fetchMovieNews()

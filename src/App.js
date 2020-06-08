@@ -6,6 +6,7 @@ import SearchPage from './components/SearchPage'
 import MovieContextProvider from './context/MoviesContext'
 import MovieDetails from './components/MovieDetails'
 import {Switch, Route} from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           <Switch>
             <Route exact path='/' render={ routerProps => <Home {...routerProps}/>}/>
             <Route exact path='/:searchpage' component={SearchPage}/>
-            <Route exact path='/moviedetails/:moviename' component={MovieDetails}/>
+            <Route exact path='/moviedetails/:moviename' render={e => <MovieDetails key={uuidv4()}/>}/>
           </Switch>
         </div>
       </MovieContextProvider>

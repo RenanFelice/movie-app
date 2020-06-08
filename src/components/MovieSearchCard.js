@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './MovieSearchCard.css'
 
 const MovieSearchCard = () => {
-    const { movieSearchListIsFetching, movieSearchList } = useContext(MoviesContext)
+    const { movieSearchListIsFetching, movieSearchList, setdropdownMenu } = useContext(MoviesContext)
     let resultPage;
 
 
@@ -23,7 +23,7 @@ const MovieSearchCard = () => {
             {moviesArrFinal.map(movie => (
 
                 <React.Fragment key={movie.imdbID}>
-                    <Link style={{ color: 'inherit', textDecoration: 'inherit' }}
+                    <Link onClick={e => setdropdownMenu('')} style={{ color: 'inherit', textDecoration: 'inherit' }}
                         to={`/moviedetails/${movie.Title}`}>
                         <div className='FoundMovieCard'>
                             <div className='img-container'>

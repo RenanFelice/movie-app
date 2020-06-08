@@ -96,15 +96,58 @@
 
 .Director h5{
     margin: 0;
-    font-weight: 700;
-    
+    font-weight: 700;    
 }
 .Director p{
     font-size: 0.9rem;
-    
-    
 }
 
+.Actors-Title{
+   display: flex;
+   justify-content: center;
+    font-size: 1.8rem;
+    
+
+}
+
+.Actors-Container{
+    margin: 3rem 3rem;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.Actors-Card-List{
+    display: flex;
+    justify-content: center;
+}
+.Actor-Card{
+    margin: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    
+}
+.Actor-Card p{
+    padding-top: 0.5rem;
+    font-size: 1.2rem;
+    width: 130px;
+    text-align: center;
+    background-color: white;
+    margin-top: 0;
+    height: 80px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.Actor-Card img{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 130px;
+    height:195px;
+}
 @media(max-width:991px){
     .MovieDetails-Banner img{
        
@@ -138,10 +181,7 @@
     .Plot{
         font-size: 0.9rem;
     }
-    /* .Overview{
 
-        font-size: 0.91em;
-    } */
     .Director p{
         font-size: 0.65rem;
           
@@ -177,6 +217,70 @@
      }
      .Director{
          margin-top: 0.4rem;
+         font-size: 0.7rem;
+     }
+     .Scores{
+         margin-top: 0.4rem;
+     }
+
+     .MovieDetails-Banner-Body-Details h1 {
+        font-size: 1rem;
+
+    }
+     .MovieDetails-Banner-Body-Details h1 span {
+        font-size: 1rem;
+
+    }
+
+    .Actor-Card {
+        padding: 0.3rem;
+        width: 100%;
+        margin: 1rem;
+        flex-direction:row ;
+        background-color: rgb(197, 197, 197);
+    }
+    .Actor-Card p {
+       background-color: inherit;
+       width: 100%;
+       padding: 0;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+    }
+    .Actors-Card-List{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+    .Actor-Card img{
+        border-radius: 10px;
+        width: 91px;
+        height:136.5px;
+    }
+
+    .Actors-Container{
+       width: 100%;
+
+    }
+    .MovieDetails-Banner-Body{
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .MovieDetails-Banner{
+      height: 210px;
+     }
+    .MovieDetails-Banner img{
+       margin-right: 1rem;
+        width: 105px;
+        height: 152.6px;
+     }
+     .Director{
+         margin-top: 0.4rem;
+         font-size: 0.7rem;
      }
      .Scores{
          margin-top: 0.4rem;

@@ -14,6 +14,9 @@ const MovieContextProvider = (props) => {
     const [moviePageFetchError, setMoviePageFetchError] = useState()
     const [movieDetails, setMovieDetails] = useState([])
     const [movieDetailsIsFetching, setMovieDetailsIsFething] = useState([])
+    const [dropdownMenu, setdropdownMenu] = useState('')
+    const [actorsDataObj, setActorsDataObj] = useState()
+    const [actorIsFetching, setActorIsFetching] = useState(true)
 
     const fetchMovieNews = async () => {
         try {
@@ -56,8 +59,13 @@ const MovieContextProvider = (props) => {
 
         const url = `https://www.omdbapi.com/?apikey=5b5e06de&t=${movieName}`
         setMovieDetailsIsFething(true)
-        await fetch(url).then(resp => resp.json()).then(data => setMovieDetails(data))
+        await fetch(url).then(resp => resp.json()).then(data => {
+            setMovieDetails(data)
+            fetchActor(data.Actors)
+        } )
         setMovieDetailsIsFething(false)
+        setActorIsFetching(true)
+
     }
 
     const fetchMovieSearchList = async (searchText) => {
@@ -97,11 +105,29 @@ const MovieContextProvider = (props) => {
         }
     }
 
+    const fetchActor = async(actorsString) => {
+        if(!actorsString) return
+        let actorsData = []
+        let actorsArray = actorsString.split(', ')
+        try{
+            setActorIsFetching(true)
+            for(let actor of actorsArray){
+                let url = `https://api.themoviedb.org/3/search/person?api_key=28a82646b1277a985950211180536637&language=en-US&query=${actor}&page=1&include_adult=false`
+                await fetch(url).then(resp => resp.json()).then(data => actorsData.push(data))
+            }
+            setActorsDataObj(actorsData)
+            setActorIsFetching(false)
+        }
+        catch(e){
+            console.log(e)
+        }
+        
+    }
    
 
 
     return (
-        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching, movieSearchList, fetchMovieSearchList, setMovieSearchListIsFetching, movieSearchListPage, fetchMovieSearchListPage, movieSearchListPageIsFetching, moviePageFetchError, movieDetails, movieDetailsIsFetching, fetchMovieDetails, fetchMovieNews,fetchTrendingMovies }}>
+        <MoviesContext.Provider value={{ movieNews, movieIsFetching, trendingMovies, trendingMoviesisFetching, movieSearchListIsFetching, movieSearchList, fetchMovieSearchList, setMovieSearchListIsFetching, movieSearchListPage, fetchMovieSearchListPage, movieSearchListPageIsFetching, moviePageFetchError, movieDetails, movieDetailsIsFetching, fetchMovieDetails, fetchMovieNews,fetchTrendingMovies, dropdownMenu, setdropdownMenu, fetchActor, actorsDataObj, actorIsFetching }}>
             {props.children}
         </MoviesContext.Provider>);
 }

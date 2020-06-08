@@ -8,8 +8,8 @@ import MovieSearchCard from './MovieSearchCard'
 const NavBar = (props) => {
     const [movieInput, setMovieInput] = useState('')
     const [timeoutId, setTimeoutId] = useState()
-    const { fetchMovieSearchList, setMovieSearchListIsFetching, fetchMovieSearchListPage } = useContext(MoviesContext)
-    const [dropdownMenu, setdropdownMenu] = useState('')
+    const { fetchMovieSearchList, setMovieSearchListIsFetching, fetchMovieSearchListPage, dropdownMenu, setdropdownMenu } = useContext(MoviesContext)
+    // const [dropdownMenu, setdropdownMenu] = useState('')
     // const [slide, setSlide] = useState(0)
     // const [lastScrollY, setLastScrollY] = useState(0)
 
