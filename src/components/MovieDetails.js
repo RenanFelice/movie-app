@@ -42,12 +42,15 @@ const MovieDetails = (props) => {
                 </div> 
                 
                 : <div className='Actors-Card-List'>
-                        {actorsDataObj ? actorsDataObj.map(actor => {
-                            return <div key={actor.results[0].name} className='Actor-Card'>
-                                <img alt={actor.results[0].name} src={`https://image.tmdb.org/t/p/w185${actor.results[0].profile_path}`} />
-                                <p>{actor.results[0].name}</p>
-                            </div>
-                        }) : <h1>não sei</h1>}
+
+                {actorsDataObj.length ? actorsDataObj.map(actor => {
+                    if(!actor.results[0]) return ''
+                    
+                    return <div key={actor.results[0].name} className='Actor-Card'>
+                        <img alt={actor.results[0].name} src={`https://image.tmdb.org/t/p/w185${actor.results[0].profile_path}`} />
+                        <p>{actor.results[0].name}</p>
+                    </div>
+                        }) : <h1>Something went wrong</h1>}
                     </div>}
                     
                 </div>
